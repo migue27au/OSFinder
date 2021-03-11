@@ -30,13 +30,6 @@ if [ ! -z $ip ]; then
 		pingOutput=$(echo "$(ping $ip -c 1 -W $timeout -t $i)" | grep -v -E "0% packet loss|ping statistics ---|bytes of data|rtt min/avg/max/mdev")
 		#echo "Respuesta -> $pingOutput"
 		
-		CheckConnection=$(echo "$pingOutput" | grep "Name or service not known" | cut -d ' ' -f 1);
-		
-		echo "eco -> $CheckConnection"
-		if [ ! -z "$CheckConnection" ]; then
-			exit 0
-			break
-		fi
 		
 		ICMPttl=$(echo $pingOutput | grep "Time to live exceeded");
 		
